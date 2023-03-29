@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Resources my Devices</string>
+    <string name="tvVersionAndroidLB">1. Version Android:</string>
+    <string name="tvVersionAndroid"></string>
+    <string name="tvBlueT">2. Bluetooth:</string>
+    <string name="tvStorage">4. Storage</string>
+    <string name="btnOn">On</string>
+    <string name="btnOff">Off</string>
+    <string name="tvLevelBattery">3. Level Of Battery</string>
+    <string name="etNameFile">Name of File</string>
+    <string name="btnSaveFile">Save</string>
+    <string name="tvState">5. Connection:</string>
+    <string name="tvConexion"></string>
+</resources>
