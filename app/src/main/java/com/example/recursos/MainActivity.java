@@ -84,21 +84,19 @@ public class MainActivity extends AppCompatActivity {
         nameFile = findViewById(R.id.etNameFile);
 
     }
-
-    public void guardar(View view) {
+    public void guardar(View view){
         String nombreArchivo = nameFile.getText().toString();
         try {
-            OutputStreamWriter archivo = new OutputStreamWriter(openFileOutput(nombreArchivo, Context.MODE_PRIVATE));
+            OutputStreamWriter archivo = new OutputStreamWriter(openFileOutput(nombreArchivo,Context.MODE_PRIVATE));
             archivo.write(nombreArchivo);
             archivo.flush();
             archivo.close();
             nameFile.setText("");
             Toast.makeText(context, "Se han guardado el archivo", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
+        }catch (IOException e){
             Toast.makeText(context, "No se pudo crear el archivo", Toast.LENGTH_SHORT).show();
         }
     }
-
     private void methoFlag() {
         if (!flag) {
             bluetoothManager = getSystemService(BluetoothManager.class);
@@ -106,34 +104,24 @@ public class MainActivity extends AppCompatActivity {
             flag = true;
         }
     }
-
-    public void enableBT(View view) {
-        methoFlag();
-        try {
-            if (btAdapter != null) {
-                Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                this.activityResultLauncher.launch(enableIntent);
-            }
-        } catch (Exception e) {
-            Log.i("Error BT", "Habilitando el BT" + e);
+    public void enableBT(View view){
+    methoFlag();
+    try {
+        if( btAdapter != null){
+            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            this.activityResultLauncher.launch(enableIntent);
         }
+    }catch (Exception e){
+        Log.i("Error BT","Habilitando el BT"+e);
+    }
     }
 
+    @SuppressLint("MissingPermission")
     public void disableBT(View view) {
         methoFlag();
         try {
             BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-            if (btAdapter != null && btAdapter.isEnabled()) {
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
+            if(btAdapter != null && btAdapter.isEnabled()){
                 btAdapter.disable();
                 Toast.makeText(this, "Bluetooth desactivado", Toast.LENGTH_SHORT).show();
             }
